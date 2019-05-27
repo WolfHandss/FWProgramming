@@ -20,7 +20,7 @@ public class lightSource : MonoBehaviour {
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("light"))
+        if (other.gameObject.CompareTag("Player"))
         {
             colourchange();
         }
