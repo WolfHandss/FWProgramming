@@ -41,9 +41,9 @@ public class enemyHealth : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("bullet"))
-        {
-            health += bulletDamage;
-        }
+        //if(collision.gameObject.CompareTag("bullet"))
+        //{
+        //    health += bulletDamage;
+        //}
     }
 }

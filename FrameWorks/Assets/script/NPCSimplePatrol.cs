@@ -25,6 +25,9 @@ public class NPCSimplePatrol : MonoBehaviour
 	bool _patrolForward;
 	float _waitTimer;
 
+    public Transform player;
+    public Transform head;
+    bool pursuing;
 
 
 
@@ -39,7 +42,7 @@ public class NPCSimplePatrol : MonoBehaviour
 		}
 		else
 		{
-			if (_patrolPoints != null && _patrolPoints.Count >=2)
+			if (_patrolPoints != null && _patrolPoints.Count >=2 )
 			{
 				_currentPatrolIndex = 0;
 				SetDestination();
@@ -64,7 +67,7 @@ public class NPCSimplePatrol : MonoBehaviour
 			if (_patrolWaiting)
 			{
 				_waiting = true;
-				_waitTimer = 0f;
+				_waitTimer = 1000f;
 			}
 			else
 			{
@@ -79,13 +82,15 @@ public class NPCSimplePatrol : MonoBehaviour
 			if (_waitTimer >= _totalWaitTime)
 			{
 				_waiting = false;
+               
 
-				ChangePatrolPoint();
+                ChangePatrolPoint();
 				SetDestination();
-			}
+              //  SetChasing();
+            }
 		}
     }
-
+ 
 	private void SetDestination()
 	{
 		if (_patrolPoints != null)
@@ -94,6 +99,10 @@ public class NPCSimplePatrol : MonoBehaviour
 			_navMeshAgent.SetDestination(targetVector);
 			_travelling = true;
 		}
+        else if (pursuing)
+        {
+            Debug.Log("Chasing is Activated");
+        }
 	}
 
 	private void ChangePatrolPoint()
