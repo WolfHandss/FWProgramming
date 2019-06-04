@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class enemyHealth : MonoBehaviour {
-    public float health;
-    public float maxHealth;
+    [SerializeField] public float health;
+    [SerializeField] public float maxHealth;
+    [SerializeField] private float bulletDamage;
 
-        public GameObject HealthBarUI;
+    public GameObject HealthBarUI;
     public Slider slider;
 	// Use this for initialization
 	void Start () {
@@ -36,5 +37,13 @@ public class enemyHealth : MonoBehaviour {
     float CalculateHealth()
     {
         return health / maxHealth;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //if(collision.gameObject.CompareTag("bullet"))
+        //{
+        //    health += bulletDamage;
+        //}
     }
 }
