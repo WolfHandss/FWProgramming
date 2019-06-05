@@ -12,6 +12,7 @@ public class SimpleLaserScript : MonoBehaviour {
     public float damage = 10f;
     public float range = 100f;
 
+    enemyHealth beamDamage;
 
     public Camera fpsCam;
 	
@@ -19,7 +20,8 @@ public class SimpleLaserScript : MonoBehaviour {
     {
         spawnedLaser = Instantiate(laserPreFab, firePoint.transform) as GameObject;
         DisableLaser();
-	}
+        beamDamage = GameObject.FindGameObjectWithTag("enemy").GetComponent<enemyHealth>();
+    }
 	
 	
 	void Update ()
@@ -71,13 +73,17 @@ public class SimpleLaserScript : MonoBehaviour {
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit ))
         {
             Debug.Log(hit.transform.name);
+            if(hit.collider.CompareTag("enemy"))
+            {
+                beamDamage.startHealing(-10);
+            }
+
+            if(hit.collider.CompareTag("enemy") == false)
+            {
+                beamDamage.stopHealing();
+            }
         }
     }
-
-
-
-
-
 
 }
 

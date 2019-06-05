@@ -58,4 +58,26 @@ public class enemyHealth : MonoBehaviour {
             health += bullet3Damage;
         }
     }
+    public void startHealing(int pHealth)
+    {
+        StartCoroutine("healthOverTime", pHealth);
+    }
+
+    public void stopHealing()
+    {
+        StopCoroutine("healthOverTime");
+    }
+
+    IEnumerator healthOverTime(int pHealth)
+    {
+        while (true)
+        {
+            print("healing");
+            health += pHealth;
+
+            health = Mathf.Clamp(health, 0, maxHealth);
+
+            yield return new WaitForSeconds(1);
+        }
+    }
 }
