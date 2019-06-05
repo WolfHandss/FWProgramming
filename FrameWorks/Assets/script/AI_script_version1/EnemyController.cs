@@ -39,6 +39,8 @@ public class EnemyController : MonoBehaviour {
 
     private EnemyAudio enemy_Audio;
 
+    //PlayerHealth damage;
+
     //++++++++++++++++++++++++++++++++++++
     // Inspector Assigned Variable
     public AIWaypointNetwork WaypointNetwork = null;
@@ -60,10 +62,12 @@ public class EnemyController : MonoBehaviour {
 
         enemy_Audio = GetComponentInChildren<EnemyAudio>();
 
+
     }
 
     // Use this for initialization
     void Start () {
+       // damage = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
 
         enemy_State = EnemyState.PATROL;
 
@@ -256,6 +260,8 @@ public class EnemyController : MonoBehaviour {
         if(attack_Timer > wait_Before_Attack) {
 
             enemy_Anim.Attack();
+
+            //damage.TakeDamage(10);
 
             attack_Timer = 0f;
 

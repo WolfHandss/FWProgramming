@@ -20,7 +20,7 @@ public class SimpleLaserScript : MonoBehaviour {
     {
         spawnedLaser = Instantiate(laserPreFab, firePoint.transform) as GameObject;
         DisableLaser();
-        beamDamage = GameObject.FindGameObjectWithTag("enemy").GetComponent<enemyHealth>();
+        beamDamage = GameObject.FindGameObjectWithTag("Enemy").GetComponent<enemyHealth>();
     }
 	
 	

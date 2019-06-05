@@ -58,23 +58,23 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.A) || (Input.GetKey(KeyCode.A) && Input.GetKeyDown(KeyCode.LeftShift)))
         {
             transform.Translate(Vector3.Lerp(transform.position, Vector3.left * dashDistance, 2.0f), Space.Self);
-            psLeft.Play();
+            //psLeft.Play();
         }
 
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.D) || (Input.GetKey(KeyCode.D) && Input.GetKeyDown(KeyCode.LeftShift)))
         {
             transform.Translate(Vector3.Lerp(transform.position, Vector3.right * dashDistance, 2.0f), Space.Self);
-            psRight.Play();
+            //psRight.Play();
         }
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.W) || (Input.GetKey(KeyCode.W) && Input.GetKeyDown(KeyCode.LeftShift)))
         {
             transform.Translate(Vector3.Lerp(transform.position, Vector3.forward * dashDistance, 2.0f), Space.Self);
-            psForward.Play();
+            //psForward.Play();
         }
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.S) || (Input.GetKey(KeyCode.S) && Input.GetKeyDown(KeyCode.LeftShift)))
         {
             transform.Translate(Vector3.Lerp(transform.position, Vector3.back * dashDistance, 2.0f), Space.Self);
-            psBack.Play();
+            //psBack.Play();
         }
 
     }
