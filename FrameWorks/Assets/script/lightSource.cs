@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class lightSource : MonoBehaviour {
-    public GameObject fairy;
+    //public GameObject fairy;
     //public GameObject colour;
     //public GameObject Ogc;
     Health playerHealth;
