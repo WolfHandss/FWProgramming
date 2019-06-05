@@ -14,7 +14,9 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
 
     public ParticleSystem psLeft; // Particle system when dash left
-    public ParticleSystem psRight; // Particle system when dash right
+    public ParticleSystem psRight; // Particle system when dash right 
+    public ParticleSystem psForward; // Particle system when dash right
+    public ParticleSystem psBack; // Particle system when dash right
 
     void Start()
     {
@@ -53,16 +55,26 @@ public class PlayerController : MonoBehaviour
 
     void Dash()
     {
-        if(Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.A))
+        if(Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.A) || (Input.GetKey(KeyCode.A) && Input.GetKeyDown(KeyCode.LeftShift)))
         {
             transform.Translate(Vector3.Lerp(transform.position, Vector3.left * dashDistance, 2.0f), Space.Self);
             psLeft.Play();
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.D) || (Input.GetKey(KeyCode.D) && Input.GetKeyDown(KeyCode.LeftShift)))
         {
             transform.Translate(Vector3.Lerp(transform.position, Vector3.right * dashDistance, 2.0f), Space.Self);
             psRight.Play();
+        }
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.W) || (Input.GetKey(KeyCode.W) && Input.GetKeyDown(KeyCode.LeftShift)))
+        {
+            transform.Translate(Vector3.Lerp(transform.position, Vector3.forward * dashDistance, 2.0f), Space.Self);
+            psForward.Play();
+        }
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.S) || (Input.GetKey(KeyCode.S) && Input.GetKeyDown(KeyCode.LeftShift)))
+        {
+            transform.Translate(Vector3.Lerp(transform.position, Vector3.back * dashDistance, 2.0f), Space.Self);
+            psBack.Play();
         }
 
     }

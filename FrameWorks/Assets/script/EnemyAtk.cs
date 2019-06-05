@@ -5,23 +5,25 @@ using UnityEngine.AI;
 
 public class EnemyAtk : MonoBehaviour
 {
-    public GameObject player;  
+    //public GameObject player;  
          
-    Animator anim;
-    NavMeshAgent enemyNav;
-       
+    // Animator anim;
+    //NavMeshAgent enemyNav;
+    PlayerHealth damage;
+    
 
     void Start()
     {
-        anim = gameObject.GetComponent<Animator>();
-        enemyNav = GetComponent<NavMeshAgent>();
+        // anim = gameObject.GetComponent<Animator>();
+        //enemyNav = GetComponent<NavMeshAgent>();
+        damage = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
     }
 
     void Update()
     {
-        enemyNav.SetDestination(player.transform.position);
+       // enemyNav.SetDestination(player.transform.position);
 
-        anim.SetTrigger("Attacking");
+        // anim.SetTrigger("Attacking");
 
         //if (enemyNav.isStopped == false)
         //{
@@ -38,12 +40,16 @@ public class EnemyAtk : MonoBehaviour
         // When the weapon hits the player.
     void OnTriggerEnter(Collider target)
     {
-        if (gameObject.tag == "Hit")
-        {            
+
+
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
             Debug.Log("Hit");
-
+            damage.TakeDamage(10);
         }
-
     }
 
 
