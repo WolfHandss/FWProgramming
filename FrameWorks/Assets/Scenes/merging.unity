@@ -308,7 +308,7 @@ Transform:
   m_LocalScale: {x: 50, y: 1, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &603666368
 BoxCollider:
@@ -599,7 +599,7 @@ Transform:
   m_LocalScale: {x: 1.4566, y: 1.4566, z: 1.4566}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &829946978
 SphereCollider:
@@ -724,7 +724,7 @@ Transform:
   - {fileID: 1227951523}
   - {fileID: 1727599922}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: -174.212, z: 0}
 --- !u!54 &978268107
 Rigidbody:
@@ -821,9 +821,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5964abd2e2030043aacfbaff15e3ccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fairy: {fileID: 978268105}
-  colour: {fileID: 0}
-  Ogc: {fileID: 0}
 --- !u!1 &1165679850
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,7 +982,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &1220114510
 GameObject:
@@ -1017,7 +1014,7 @@ Transform:
   - {fileID: 808860089}
   - {fileID: 1616509926}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1227951522
 GameObject:
@@ -1436,7 +1433,7 @@ Transform:
   m_Children:
   - {fileID: 1907825796}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1536147899
 MonoBehaviour:
@@ -1567,7 +1564,7 @@ Transform:
   m_LocalScale: {x: 50, y: 1, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1616509925
 GameObject:
@@ -1640,7 +1637,7 @@ Transform:
   - {fileID: 1183355896}
   - {fileID: 446175892}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1657593158
 GameObject:
@@ -2129,6 +2126,48 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1001 &2013692943
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4815977777557662, guid: d8cbc72c84ce74e4d97734dbc07b8a59, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 12.79458
+      objectReference: {fileID: 0}
+    - target: {fileID: 4815977777557662, guid: d8cbc72c84ce74e4d97734dbc07b8a59, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 4815977777557662, guid: d8cbc72c84ce74e4d97734dbc07b8a59, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 60.280586
+      objectReference: {fileID: 0}
+    - target: {fileID: 4815977777557662, guid: d8cbc72c84ce74e4d97734dbc07b8a59, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4815977777557662, guid: d8cbc72c84ce74e4d97734dbc07b8a59, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4815977777557662, guid: d8cbc72c84ce74e4d97734dbc07b8a59, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4815977777557662, guid: d8cbc72c84ce74e4d97734dbc07b8a59, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4815977777557662, guid: d8cbc72c84ce74e4d97734dbc07b8a59, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d8cbc72c84ce74e4d97734dbc07b8a59, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &2020007092
 GameObject:
   m_ObjectHideFlags: 0
