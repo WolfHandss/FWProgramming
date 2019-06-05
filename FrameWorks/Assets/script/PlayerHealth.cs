@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int startingHealth = 100;                            // The amount of health the player starts the game with.
-    public int currentHealth;                                   // The current health the player has.
+    [SerializeField] private int maxHealth = 100;                            // The amount of health the player starts the game with.
+    [SerializeField] private int currentHealth;                                   // The current health the player has.
     public Slider healthSlider;                                 // Reference to the UI's health bar.
     public Image damageImage;                                   // Reference to an image to flash on the screen on being hurt.
     public AudioClip deathClip;                                 // The audio clip to play when the player dies.
@@ -17,21 +17,21 @@ public class PlayerHealth : MonoBehaviour
 
     Animator anim;                                              // Reference to the Animator component.
     AudioSource playerAudio;                                    // Reference to the AudioSource component.
-   // PlayerMovement playerMovement;                              // Reference to the player's movement.
-   // PlayerShooting playerShooting;                              // Reference to the PlayerShooting script.
+                                                                // PlayerMovement playerMovement;                              // Reference to the player's movement.
+                                                                // PlayerShooting playerShooting;                              // Reference to the PlayerShooting script.
     bool isDead;                                                // Whether the player is dead.
     bool damaged;                                               // True when the player gets damaged.
 
 
-      // Use this for initialization
-    void Start ()
+    // Use this for initialization
+    void Start()
     {
         // Set the initial health of the player.
-        currentHealth = startingHealth;
+        currentHealth = maxHealth;
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         // If the player has just been damaged...
         if (damaged)
@@ -78,7 +78,7 @@ public class PlayerHealth : MonoBehaviour
         isDead = true;
 
         // Turn off any remaining shooting effects.
-       // playerShooting.DisableEffects();
+        // playerShooting.DisableEffects();
 
         // Tell the animator that the player is dead.
         anim.SetTrigger("Die");
@@ -88,8 +88,8 @@ public class PlayerHealth : MonoBehaviour
         playerAudio.Play();
 
         // Turn off the movement and shooting scripts.
-       // playerMovement.enabled = false;
-      //  playerShooting.enabled = false;
+        // playerMovement.enabled = false;
+        //  playerShooting.enabled = false;
     }
 
     void OnTriggerEnter(Collider col)
@@ -104,5 +104,34 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public void startHealing(int pHealth)
+    {
+        StartCoroutine("healthOverTime", pHealth);
     }
+
+    public void stopHealing()
+    {
+        StopCoroutine("healthOverTime");
+    }
+
+    IEnumerator healthOverTime(int pHealth)
+    {
+        while (true)
+        {
+            print("healing");
+            currentHealth += pHealth;
+
+            currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+            if (currentHealth == 0)
+            {
+                Debug.Log("dead");
+                SendMessage("OnDeath", "You Die");
+            }
+
+            yield return new WaitForSeconds(1);
+        }
+    }
+
+}
 
