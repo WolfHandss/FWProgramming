@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
-{
+public class PlayerMovement : MonoBehaviour {
 
     public float speed;
     public float jumpHeight = 1f;
@@ -21,7 +20,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerMovement();
+        PlayerMove();
 
         if (Input.GetKey(KeyCode.Space) && isGrounded == true)
         {
@@ -30,7 +29,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void PlayerMovement()
+    void PlayerMove()
     {
         float hor = Input.GetAxis("Horizontal");
         float ver = Input.GetAxis("Vertical");
