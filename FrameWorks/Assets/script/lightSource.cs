@@ -6,12 +6,12 @@ public class lightSource : MonoBehaviour {
     //public GameObject fairy;
     //public GameObject colour;
     //public GameObject Ogc;
-    Health playerHealth;
+    PlayerHealth Health;
 
     // Use this for initialization
     void Start()
     {
-        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
+        Health = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
     }
 
     // Update is called once per frame
@@ -25,7 +25,7 @@ public class lightSource : MonoBehaviour {
         {
             //print("healthboost");
             //colourchange();
-            playerHealth.startHealing(1);
+            Health.startHealing(1);
 
         }
     }
@@ -35,7 +35,7 @@ public class lightSource : MonoBehaviour {
         {
             //print("healthboost");
             //colourchange();
-            playerHealth.stopHealing();
+            Health.stopHealing();
 
         }
     }
