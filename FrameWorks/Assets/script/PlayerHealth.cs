@@ -92,6 +92,17 @@ public class PlayerHealth : MonoBehaviour
       //  playerShooting.enabled = false;
     }
 
+    void OnTriggerEnter(Collider col)
+    {
+        //all projectile colliding game objects should be tagged "Enemy" or whatever in inspector but that tag must be reflected in the below if conditional
+        if (col.gameObject.tag == "Projectile")
+        {
+            Destroy(gameObject);
+            //add an explosion or something
+            //destroy the projectile that just caused the trigger collision
+            currentHealth = currentHealth - 20;
+        }
+    }
 
-}
+    }
 
