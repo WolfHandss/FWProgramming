@@ -44,6 +44,7 @@ public class lightSource : MonoBehaviour {
     private void OgColour()
     {
         fairy.GetComponent<Renderer>().material = Ogc.GetComponent<Renderer>().sharedMaterial;
+        Debug.Log("Hit");
     }
     // Use this for initialization
     

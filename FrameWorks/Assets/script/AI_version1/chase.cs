@@ -11,7 +11,7 @@ public class chase : MonoBehaviour
 
     public Transform player;
     public Transform head;
-  //  static Animator anim;
+    static Animator anim;
     bool pursuing = false;
 
 
@@ -42,13 +42,13 @@ public class chase : MonoBehaviour
             if (direction.magnitude > 5)
             {
                 this.transform.Translate(0, 0, 0.05f);
-         //       anim.SetBool("isWalking", true);
-         //       anim.SetBool("isAttacking", false);
+             //  anim.SetBool("isWalking", true);
+             //   anim.SetBool("Attack", false);
             }
             else
             {
-        //       anim.SetBool("isAttacking", true);
-        //        anim.SetBool("isWalking", false);
+            //   anim.SetBool("Attack", true);
+              // anim.SetBool("isWalking", false);
             }
 
         }
