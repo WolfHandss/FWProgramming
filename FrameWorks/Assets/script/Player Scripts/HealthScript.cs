@@ -36,7 +36,8 @@ public class HealthScript : MonoBehaviour {
             player_Stats = GetComponent<PlayerStats>();
         }
 
-	}
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(Tags.ENEMY_TAG);
+    }
 	
     public void ApplyDamage(float damage) {
 

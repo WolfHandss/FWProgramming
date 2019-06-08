@@ -51,14 +51,27 @@ public class EnemyController : MonoBehaviour {
 
     private float _originalMaxSpeed = 0;
 
+    float nextAttackTime;
+    float myCollisionRadius;
+    float targetCollisionRadius;
+
+    Material skinMaterial;
+    Color originalColour;
 
     void Awake() {
         enemy_Anim = GetComponent<EnemyAnimator>();
         navAgent = GetComponent<NavMeshAgent>();
 
+        skinMaterial = GetComponent<Renderer>().material;
+        originalColour = skinMaterial.color;
+
         target = GameObject.FindWithTag(Tags.PLAYER_TAG).transform;
 
         enemy_Audio = GetComponentInChildren<EnemyAudio>();
+
+        //for the sake imans requirement
+        myCollisionRadius = GetComponent<CapsuleCollider>().radius;
+        targetCollisionRadius = target.GetComponent<CapsuleCollider>().radius;
 
     }
 
@@ -76,6 +89,9 @@ public class EnemyController : MonoBehaviour {
         // memorize the value of chase distance
         // so that we can put it back
         current_Chase_Distance = chase_Distance;
+
+
+     
 
 
         // If not valid Waypoint Network has been assigned then return
@@ -262,6 +278,13 @@ public class EnemyController : MonoBehaviour {
             // play attack sound
             enemy_Audio.Play_AttackSound();
 
+            float sqrDstToTarget = (target.position - transform.position).sqrMagnitude;
+            if (sqrDstToTarget < Mathf.Pow(attack_Distance + myCollisionRadius + targetCollisionRadius, 2))
+            {
+                nextAttackTime = Time.time + wait_Before_Attack;
+                StartCoroutine(Attack_bouncy());
+            }
+
         }
 
         if(Vector3.Distance(transform.position, target.position) >
@@ -275,6 +298,36 @@ public class EnemyController : MonoBehaviour {
 
     } // attack
 
+    IEnumerator Attack_bouncy()
+    {
+
+        enemy_State = EnemyState.ATTACK;
+      // navAgent.enabled = false;
+
+        Vector3 originalPosition = transform.position;
+        Vector3 dirToTarget = (target.position - transform.position).normalized;
+        Vector3 attackPosition = target.position - dirToTarget * (myCollisionRadius);
+
+        float attackSpeed = 3;
+        float percent = 0;
+
+        skinMaterial.color = Color.red;
+
+        while (percent <= 1)
+        {
+
+            percent += Time.deltaTime * attackSpeed;
+            float interpolation = (-Mathf.Pow(percent, 2) + percent) * 4;
+            transform.position = Vector3.Lerp(originalPosition, attackPosition, interpolation);
+
+            yield return null;
+        }
+
+        skinMaterial.color = originalColour;
+        enemy_State = EnemyState.CHASE;
+
+    //   navAgent.enabled = true;
+    }
     void SetNewRandomDestination() {
 
         //float rand_Radius = Random.Range(patrol_Radius_Min, patrol_Radius_Max);
