@@ -11,7 +11,7 @@ public class SimpleLaserScript : MonoBehaviour {
 
     public float damage = 10f;
     public float range = 100f;
-   
+    enemyHealth Damage;
 
     public Camera fpsCam;
 	
@@ -19,6 +19,8 @@ public class SimpleLaserScript : MonoBehaviour {
     {
         spawnedLaser = Instantiate(laserPreFab, firePoint.transform) as GameObject;
         DisableLaser();
+
+        Damage = GameObject.FindGameObjectWithTag("Enemy").GetComponent<enemyHealth>();
 	}
 	
 	
@@ -65,14 +67,24 @@ public class SimpleLaserScript : MonoBehaviour {
 
 
 
-    void Shoot()
+   void OnCollisonEnter(Collision col)
     {
-        //shoot
-        GameObject tempBullet = Instantiate(laserPreFab, transform.position, transform.rotation) as GameObject;
-        Rigidbody tempRigidBodyBullet = tempBullet.GetComponent<Rigidbody>();
-        
-        Destroy(tempBullet, 2.0f);
 
+        if (col.gameObject.CompareTag("Enemy"))
+        {
+            Damage.startHealing(-1);
+        }
+
+    }
+
+
+    void OnCollisionExit(Collision col)
+    {
+        if (col.gameObject.CompareTag("Enemy"))
+        {
+            Damage.stopHealing();
+            Destroy(gameObject);
+        }
     }
 
 
