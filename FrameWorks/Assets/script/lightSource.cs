@@ -25,7 +25,7 @@ public class lightSource : MonoBehaviour {
         {
             //print("healthboost");
             //colourchange();
-            Health.startHealing(1);
+            Health.startHealing(5);
 
         }
     }
