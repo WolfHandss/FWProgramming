@@ -11,7 +11,7 @@ public class SimpleLaserScript : MonoBehaviour {
 
     public float damage = 10f;
     public float range = 100f;
-
+   
 
     public Camera fpsCam;
 	
@@ -67,11 +67,12 @@ public class SimpleLaserScript : MonoBehaviour {
 
     void Shoot()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit ))
-        {
-            Debug.Log(hit.transform.name);
-        }
+        //shoot
+        GameObject tempBullet = Instantiate(laserPreFab, transform.position, transform.rotation) as GameObject;
+        Rigidbody tempRigidBodyBullet = tempBullet.GetComponent<Rigidbody>();
+        
+        Destroy(tempBullet, 2.0f);
+
     }
 
 
