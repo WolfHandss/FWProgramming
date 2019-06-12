@@ -42,6 +42,7 @@ public class RayCast : MonoBehaviour {
             {
                 target.stopHealing();
             }
+            Debug.DrawRay(fpsCam.transform.position, fpsCam.transform.forward, Color.green);
         }
     }
 }
