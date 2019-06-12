@@ -4,6 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - lightSource
+  - Bullet
   - Enemy
   layers:
   - Default
@@ -14,10 +16,10 @@ TagManager:
   - UI
   - 
   - 
-  - AI Entity
-  - AI Trigger
-  - AI Entity Trigger
-  - Player
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
