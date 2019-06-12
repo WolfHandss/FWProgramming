@@ -10,19 +10,11 @@ public class RayCast : MonoBehaviour {
 
     public Camera fpsCam;
 
-
-
-
-
-
-	
 	void Start ()
     {
         
        
     }
-	
-	
 	void Update ()
     {
         {
@@ -34,17 +26,12 @@ public class RayCast : MonoBehaviour {
 
         }
     }
-    
     void Shoot()
     {
         RaycastHit hit;
         if(Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
             Debug.Log(hit.transform.name);
-            Debug.Log("RayCast happaning");
-
-
-
            enemyHealth target = hit.transform.GetComponent<enemyHealth>();
             if (target != null)
             {
@@ -55,14 +42,6 @@ public class RayCast : MonoBehaviour {
             {
                 target.stopHealing();
             }
-
         }
     }
-
-
-
-
-
-
-
 }
