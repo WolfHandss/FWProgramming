@@ -53,15 +53,24 @@ public class PlayerController : MonoBehaviour
 
     void Dash()
     {
-        if(Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.A) || (Input.GetKey(KeyCode.A) && (Input.GetKeyDown(KeyCode.LeftShift))))
         {
-            transform.Translate(Vector3.Lerp(transform.position, Vector3.left * dashDistance, 2.0f), Space.Self);
+            transform.Translate(Vector3.Lerp(transform.position, Vector3.left * dashDistance, 2f), Space.Self);
             psLeft.Play();
         }
-
-        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.D) || (Input.GetKey(KeyCode.D) && (Input.GetKeyDown(KeyCode.LeftShift))))
         {
             transform.Translate(Vector3.Lerp(transform.position, Vector3.right * dashDistance, 2.0f), Space.Self);
+            psRight.Play();
+        }
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.W) || (Input.GetKey(KeyCode.W) && (Input.GetKeyDown(KeyCode.LeftShift))))
+        {
+            transform.Translate(Vector3.Lerp(transform.position, Vector3.forward * dashDistance, 2.0f), Space.Self);
+            psRight.Play();
+        }
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.S) || (Input.GetKey(KeyCode.S) && (Input.GetKeyDown(KeyCode.LeftShift))))
+        {
+            transform.Translate(Vector3.Lerp(transform.position, Vector3.back * dashDistance, 2.0f), Space.Self);
             psRight.Play();
         }
 
