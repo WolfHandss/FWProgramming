@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 
     public float speed;
+    private float ogSpeed = 15f;
     public float jumpHeight = 1f;
 
     public bool isGrounded;
@@ -13,6 +14,7 @@ public class PlayerMovement : MonoBehaviour {
 
     void Start()
     {
+        
         isGrounded = true;
         rb = GetComponent<Rigidbody>();
     }
@@ -26,6 +28,16 @@ public class PlayerMovement : MonoBehaviour {
         {
             rb.AddForce(0, jumpHeight, 0, ForceMode.Impulse);
             isGrounded = false;
+
+            if (!isGrounded)
+            {
+                jumpMove();
+            }
+        }
+        if (isGrounded)
+        {
+            print("LAND!!!!");
+            landedSpeed();
         }
     }
 
@@ -35,10 +47,21 @@ public class PlayerMovement : MonoBehaviour {
         float ver = Input.GetAxis("Vertical");
         Vector3 playerMovement = new Vector3(hor, 0f, ver) * speed * Time.deltaTime;
         transform.Translate(playerMovement, Space.Self);
+       
     }
 
     void OnCollisionEnter()
     {
+       
         isGrounded = true;
+    }
+    void jumpMove()
+    {
+        speed /= 2;
+    }
+
+    void landedSpeed()
+    {
+        speed = ogSpeed;
     }
 }

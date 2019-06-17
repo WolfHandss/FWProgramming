@@ -9,18 +9,24 @@ public class RayCast : MonoBehaviour {
     public float range = 100f;
 
     public Camera fpsCam;
+    enemyHealth targeting;
 
-	void Start ()
+    void Start ()
     {
-        
-       
+         targeting = GameObject.FindGameObjectWithTag("Enemy").GetComponent<enemyHealth>();
+
+
     }
-	void Update ()
+    void Update ()
     {
         {
             if (Input.GetButton("Fire1"))
             {
                 Shoot();
+            }
+            else
+            {
+                targeting.stopHealing();
             }
 
 
@@ -31,17 +37,21 @@ public class RayCast : MonoBehaviour {
         RaycastHit hit;
         if(Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
+            enemyHealth target = hit.transform.GetComponent<enemyHealth>();
+
             Debug.Log(hit.transform.name);
-           enemyHealth target = hit.transform.GetComponent<enemyHealth>();
             if (target != null)
             {
                 Debug.Log("hitting");
                 target.startHealing(-3);
             }
-            else
+            else 
             {
+                print("not hitting");
                 target.stopHealing();
+               
             }
+            Debug.DrawRay(fpsCam.transform.position, fpsCam.transform.forward, Color.green);
         }
     }
 }
