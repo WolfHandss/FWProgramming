@@ -134,5 +134,17 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    //public void ShootingDamage()
+    //{
+    //    if(Input.GetMouseButtonDown(1))
+    //    {
+    //        stopHealing();
+    //        currentHealth = currentHealth - 20;
+    //    }
+    //    else
+    //    {
+    //        startHealing(3);
+    //    }
+    //}
 }
 

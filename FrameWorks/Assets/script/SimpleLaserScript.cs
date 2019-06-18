@@ -9,15 +9,15 @@ public class SimpleLaserScript : MonoBehaviour {
     
 
     private GameObject spawnedLaser;
-  
-	
-	void Start ()
+
+ 
+
+    void Start ()
     {
         spawnedLaser = Instantiate(laserPreFab, firePoint.transform) as GameObject;
         DisableLaser();
-
         
-	}
+    }
 
     void Update ()
     {
@@ -41,6 +41,7 @@ public class SimpleLaserScript : MonoBehaviour {
     void EnableLaser()
     {
         spawnedLaser.SetActive(true);
+  
     }
 
     void UpdateLaser()
@@ -55,10 +56,10 @@ public class SimpleLaserScript : MonoBehaviour {
     void DisableLaser()
     {
         spawnedLaser.SetActive(false);
+   
     }
 
-
-
+    
    
 
 

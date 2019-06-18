@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 
     public float speed;
-    private float ogSpeed = 15f;
+    private float ogSpeed = 15;
     public float jumpHeight = 1f;
 
     public bool isGrounded;
@@ -39,6 +39,8 @@ public class PlayerMovement : MonoBehaviour {
             print("LAND!!!!");
             landedSpeed();
         }
+
+        
     }
 
     void PlayerMove()
@@ -62,6 +64,14 @@ public class PlayerMovement : MonoBehaviour {
 
     void landedSpeed()
     {
-        speed = ogSpeed;
+        if (Input.GetButton("Fire1"))
+        {
+            speed = ogSpeed - 10;
+        }
+        else
+        {
+            speed = ogSpeed;
+        }
     }
+
 }
