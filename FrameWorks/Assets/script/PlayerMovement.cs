@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour {
     public float speed;
     private float ogSpeed = 15;
     public float jumpHeight = 1f;
+    public float speedRed;
 
     public bool isGrounded;
 
@@ -66,7 +67,7 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (Input.GetButton("Fire1"))
         {
-            speed = ogSpeed - 10;
+            speed = ogSpeed - speedRed;
         }
         else
         {
