@@ -9,14 +9,8 @@ public class RayCast : MonoBehaviour {
     public float range = 100f;
 
     public Camera fpsCam;
-    enemyHealth targeting;
-
-    void Start ()
-    {
-         targeting = GameObject.FindGameObjectWithTag("Enemy").GetComponent<enemyHealth>();
-
-
-    }
+    private enemyHealth targeting;
+    
     void Update ()
     {
         {
@@ -35,9 +29,10 @@ public class RayCast : MonoBehaviour {
         RaycastHit hit;
         if(Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
-            enemyHealth target = hit.transform.GetComponentInParent<enemyHealth>();
+            targeting = hit.transform.GetComponent<enemyHealth>();
 
             Debug.Log(hit.transform.name);
+            Debug.Log("raycast working");
             if (hit.transform.CompareTag("Enemy"))
             {
                 Debug.Log("raycast hitting");
