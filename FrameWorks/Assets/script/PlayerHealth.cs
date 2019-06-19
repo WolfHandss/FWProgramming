@@ -49,6 +49,7 @@ public class PlayerHealth : MonoBehaviour
 
         // Reset the damaged flag.
         damaged = false;
+        beamDamage();
     }
 
     public void TakeDamage(int amount)
@@ -134,17 +135,16 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    //public void ShootingDamage()
-    //{
-    //    if(Input.GetMouseButtonDown(1))
-    //    {
-    //        stopHealing();
-    //        currentHealth = currentHealth - 20;
-    //    }
-    //    else
-    //    {
-    //        startHealing(3);
-    //    }
-    //}
+    public void beamDamage()
+    {
+        if (Input.GetButton("Fire1"))
+        {
+            startHealing(-1);
+        }
+        else
+        {
+            stopHealing();
+        }
+    }
 }
 
