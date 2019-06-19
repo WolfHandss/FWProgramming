@@ -6,9 +6,6 @@ using UnityEngine.UI;
 public class enemyHealth : MonoBehaviour {
     [SerializeField] private float health;
     [SerializeField] private float maxHealth;
-    //[SerializeField] private float bullet1Damage;
-    //[SerializeField] private float bullet2Damage;
-    //[SerializeField] private float bullet3Damage;
 
     public GameObject HealthBarUI;
     public Slider slider;
@@ -41,23 +38,12 @@ public class enemyHealth : MonoBehaviour {
         return health / maxHealth;
     }
 
-    /*private void OnCollisionEnter(Collision collision)
+    public void DoDamage( int D)
     {
-        if(collision.gameObject.CompareTag("Bullet1"))
-        {
-            health += bullet1Damage;
-        }
+        health += D;
+        health = Mathf.Clamp(health, 0, maxHealth);
 
-        if (collision.gameObject.CompareTag("Bullet2"))
-        {
-            health += bullet2Damage;
-        }
-
-        if (collision.gameObject.CompareTag("Bullet3"))
-        {
-            health += bullet3Damage;
-        }
-    }*/
+    }
     public void startHealing(int pHealth)
     {
         StartCoroutine("healthOverTime", pHealth);

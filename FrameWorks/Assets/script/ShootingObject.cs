@@ -12,11 +12,10 @@ public class ShootingObject : MonoBehaviour
     public float Bullet_Forward_Force;
     //Bullet Damage
     //public int bulletDmg = 20;
-    enemyHealth damage;
+
 
     private void Start()
     {
-        damage = GameObject.FindGameObjectWithTag("Enemy").GetComponent<enemyHealth>();
     }
 
     public virtual void Shooting()
@@ -46,20 +45,6 @@ public class ShootingObject : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             Shooting();
-        }
-    }
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            damage.startHealing(-3);
-        }
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            damage.stopHealing();
         }
     }
 }

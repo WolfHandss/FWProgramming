@@ -135,9 +135,9 @@ MonoBehaviour:
   UIStart: 0
   UIEnd: 5
   Waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4998328713872912, guid: 5555920dd092bbf4baf125a557f524df, type: 2}
+  - {fileID: 4359473814786500, guid: 5555920dd092bbf4baf125a557f524df, type: 2}
+  - {fileID: 4665130915638946, guid: 5555920dd092bbf4baf125a557f524df, type: 2}
+  - {fileID: 4828809482641362, guid: 5555920dd092bbf4baf125a557f524df, type: 2}
+  - {fileID: 4323656092742816, guid: 5555920dd092bbf4baf125a557f524df, type: 2}
+  - {fileID: 4205948247630662, guid: 5555920dd092bbf4baf125a557f524df, type: 2}

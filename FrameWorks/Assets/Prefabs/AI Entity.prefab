@@ -637,7 +637,8 @@ MonoBehaviour:
   patrol_For_This_Time: 4
   wait_Before_Attack: 1
   attack_Point: {fileID: 1733766677433198}
-  WaypointNetwork: {fileID: 0}
+  WaypointNetwork: {fileID: 114337147700408512, guid: c53622ce8f5e2404ba64801fd456b83f,
+    type: 2}
   CurrentIndex: 0
   HasPath: 0
   PathPending: 0
