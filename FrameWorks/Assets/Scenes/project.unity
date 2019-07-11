@@ -1444,7 +1444,45 @@ MonoBehaviour:
   speed: 15
   jumpHeight: 10
   speedRed: 10
+  floatSpeed: 0.2
+  airSpeedcont: 7
+  verticalVel: 0
+  gravity: 30
   isGrounded: 0
+  jumpFallOff:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.2915053
+      outSlope: -0.2915053
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5947726
+      value: 0.82662064
+      inSlope: -1.3533002
+      outSlope: -1.3533002
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.15467761
+    - serializedVersion: 3
+      time: 0.9935303
+      value: 0.0034255981
+      inSlope: -2.0643992
+      outSlope: -2.0643992
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  jumpMulitp: 5
 --- !u!114 &757453375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1821,7 +1859,18 @@ MonoBehaviour:
   speed: 15
   jumpHeight: 1
   speedRed: 0
+  floatSpeed: 0.2
+  airSpeedcont: 0.7
+  verticalVel: 0
+  gravity: 20
   isGrounded: 0
+  jumpFallOff:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  jumpMulitp: 10
 --- !u!114 &906926349
 MonoBehaviour:
   m_ObjectHideFlags: 0
