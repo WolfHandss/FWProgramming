@@ -3,58 +3,75 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class enemyHealth : MonoBehaviour {
+public class enemyHealth : MonoBehaviour
+{
     [SerializeField] private float health;
     [SerializeField] private float maxHealth;
 
     public GameObject HealthBarUI;
     public Slider slider;
+
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         health = maxHealth;
         slider.value = CalculateHealth();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        slider.value = CalculateHealth();
-        if(health < maxHealth)
-        {
-            HealthBarUI.SetActive(true);
-        }
-
-        if( health <=0)
-        {
-            Destroy(gameObject);
-        }
-
-        if(health > maxHealth)
-        {
-            health = maxHealth;
-        }
+	void Update ()
+    {        
+        
 	}
-    float CalculateHealth()
+
+    //determine health percentage to adjust slider
+    private float CalculateHealth()
     {
         return health / maxHealth;
     }
 
-    public void DoDamage( int D)
+    //changes this objects health
+    public void AdjustHealth(int change)
     {
-        health += D;
-        health = Mathf.Clamp(health, 0, maxHealth);
+        health += change;
 
+        //keep health within certain range, -1 so player can die
+        health = Mathf.Clamp(health, -1, maxHealth);
+
+        //only implement this logic when there is a change in health
+        //otherwise it's a waste of CPU constantly checking every frame for these things
+        if (health < maxHealth)
+        {
+            HealthBarUI.SetActive(true);
+        }
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+
+        //only change slider when there is a change to overall health
+        slider.value = CalculateHealth();
     }
-    public void startHealing(int pHealth)
+
+    //initiate Coroutines
+    public void StartHealing(int pHealth)
     {
         StartCoroutine("healthOverTime", pHealth);
     }
 
-    public void stopHealing()
+    public void StopHealing()
     {
         StopCoroutine("healthOverTime");
     }
 
-    IEnumerator healthOverTime(int pHealth)
+
+    IEnumerator HealthOverTime(int pHealth)
     {
         while (true)
         {
@@ -65,6 +82,5 @@ public class enemyHealth : MonoBehaviour {
 
             yield return new WaitForSeconds(1);
         }
-    }
-    
+    }    
 }

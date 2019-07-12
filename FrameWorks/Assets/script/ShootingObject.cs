@@ -8,19 +8,24 @@ public class ShootingObject : MonoBehaviour
 
     //Object 
     public GameObject Bullet;
+
     //Force
     public float Bullet_Forward_Force;
+
     //Bullet Damage
     //public int bulletDmg = 20;
-
-
-    private void Start()
+            
+    
+    private void Update()
     {
+        if (Input.GetMouseButtonDown(1))
+        {
+            Shooting();
+        }
     }
 
     public virtual void Shooting()
     {
-
         //The Bullet instantiation happens here.
         GameObject Temporary_Bullet_Handler;
         Temporary_Bullet_Handler = Instantiate(Bullet, Bullet_Emitter.transform.position, Bullet_Emitter.transform.rotation) as GameObject;
@@ -39,12 +44,5 @@ public class ShootingObject : MonoBehaviour
         //Basic Clean Up, set the Bullets to self destruct after 1 Seconds, I am being VERY generous here, normally 3 seconds is plenty.
         Destroy(Temporary_Bullet_Handler, 1.0f);
 
-    }
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(1))
-        {
-            Shooting();
-        }
     }
 }
