@@ -21,7 +21,7 @@ public class BulletDamage : MonoBehaviour {
         if (collision.gameObject.tag == "Enemy")
         {
             enemyHealth damage = collision.gameObject.GetComponent<enemyHealth>();
-            damage.DoDamage(-3);
+            damage.AdjustHealth(-3);
         }
     }
 
