@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour {
 
-    float bulletSpeed = 900;
+    public float bulletSpeed = 900;
     public GameObject bullet;
 
     AudioSource bulletAudio;
@@ -32,7 +32,7 @@ public class Shooting : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             Fire();
         }

@@ -3,59 +3,84 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class enemyHealth : MonoBehaviour {
+public class enemyHealth : MonoBehaviour
+{
     [SerializeField] private float health;
     [SerializeField] private float maxHealth;
-    [SerializeField] private float bullet1Damage;
-    [SerializeField] private float bullet2Damage;
-    [SerializeField] private float bullet3Damage;
 
     public GameObject HealthBarUI;
     public Slider slider;
+
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         health = maxHealth;
         slider.value = CalculateHealth();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        slider.value = CalculateHealth();
-        if(health < maxHealth)
-        {
-            HealthBarUI.SetActive(true);
-        }
-
-        if( health <=0)
-        {
-            Destroy(gameObject);
-        }
-
-        if(health > maxHealth)
-        {
-            health = maxHealth;
-        }
+	void Update ()
+    {        
+        
 	}
-    float CalculateHealth()
+
+    //determine health percentage to adjust slider
+    private float CalculateHealth()
     {
         return health / maxHealth;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    //changes this objects health
+    public void AdjustHealth(int change)
     {
-        if(collision.gameObject.CompareTag("Bullet1"))
+        health += change;
+
+        //keep health within certain range, -1 so player can die
+        health = Mathf.Clamp(health, -1, maxHealth);
+
+        //only implement this logic when there is a change in health
+        //otherwise it's a waste of CPU constantly checking every frame for these things
+        if (health < maxHealth)
         {
-            health += bullet1Damage;
+            HealthBarUI.SetActive(true);
         }
 
-        if (collision.gameObject.CompareTag("Bullet2"))
+        if (health <= 0)
         {
-            health += bullet2Damage;
+            Destroy(gameObject);
         }
 
-        if (collision.gameObject.CompareTag("Bullet3"))
+        if (health > maxHealth)
         {
-            health += bullet3Damage;
+            health = maxHealth;
         }
+
+        //only change slider when there is a change to overall health
+        slider.value = CalculateHealth();
     }
+
+    //initiate Coroutines
+    public void StartHealing(int pHealth)
+    {
+        StartCoroutine("healthOverTime", pHealth);
+    }
+
+    public void StopHealing()
+    {
+        StopCoroutine("healthOverTime");
+    }
+
+
+    IEnumerator HealthOverTime(int pHealth)
+    {
+        while (true)
+        {
+            print("healing");
+            health += pHealth;
+
+            health = Mathf.Clamp(health, 0, maxHealth);
+
+            yield return new WaitForSeconds(1);
+        }
+    }    
 }
