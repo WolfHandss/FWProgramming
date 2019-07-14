@@ -1,40 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class SceneSwitcher : MonoBehaviour
-{
-    
-	public void LoadStartScreen()
-	{
-		SceneManager.LoadScene(0);
-	}
+public class SceneSwitcher : MonoBehaviour {
 
-	public void LoadEndScreen()
-	{
-		SceneManager.LoadScene(2);
+	// Use this for initialization
+	void Start () {
+		
 	}
-
-	public void LoadGameScreen()
-	{
-		SceneManager.LoadScene(1);
-	}
-
+	
 	// Update is called once per frame
-	void Update()
-    {
-		if (Input.GetKeyDown(KeyCode.Alpha1))
-		{
-			LoadStartScreen();
-		}
-		else if (Input.GetKeyDown(KeyCode.Alpha2))
-		{
-			LoadGameScreen();
-		}
-		else if (Input.GetKeyDown(KeyCode.Alpha3))
-		{
-			LoadEndScreen();
-		}
+	void Update () {
+		
 	}
+
+    public void StartButton()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void ExitButton()
+    {
+        Application.Quit();
+    }
+
+    public void RestartButton()
+    {
+        SceneManager.LoadScene(0);
+    }
 }
