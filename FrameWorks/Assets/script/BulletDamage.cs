@@ -22,7 +22,9 @@ public class BulletDamage : MonoBehaviour {
         {
             enemyHealth damage = collision.gameObject.GetComponent<enemyHealth>();
             damage.AdjustHealth(-3);
+            
         }
+        Destroy(gameObject);
     }
 
 }
