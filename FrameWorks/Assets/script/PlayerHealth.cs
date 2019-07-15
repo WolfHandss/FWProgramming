@@ -70,7 +70,7 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0 && isDead == false)
         {
             // ... it should die.
-            Debug.Log("deaded");
+         
             Death();
         }
     }
@@ -88,14 +88,19 @@ public class PlayerHealth : MonoBehaviour
 
         // Set the audiosource to play the death clip and play it (this will stop the hurt sound from playing).
         //playerAudio.clip = deathClip;
-       // playerAudio.Play();
+        // playerAudio.Play();
 
         // Turn off the movement and shooting scripts.
         // playerMovement.enabled = false;
         //  playerShooting.enabled = false;
 
+        //set cursor to visible
+        //Cursor.lockState = false;
+        //Cursor.visible = true;
+
         //go to gameover scene
         SceneManager.LoadScene(2);
+
     }
 
     void OnTriggerEnter(Collider col)
