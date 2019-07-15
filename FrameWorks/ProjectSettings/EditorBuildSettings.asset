@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScreen.unity
     guid: a1b5cae163ee30f4691150e5aff84085
   - enabled: 1
-    path: Assets/Scenes/merging.unity
+    path: Assets/Scenes/project.unity
     guid: 56182416baf655d408a60c0a1a1f5a0f
   - enabled: 1
     path: Assets/Scenes/EndScreen.unity

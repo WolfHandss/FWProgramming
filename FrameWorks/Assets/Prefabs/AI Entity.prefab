@@ -208,7 +208,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1591228478033832}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.14, y: 1.51, z: 39}
+  m_LocalPosition: {x: 18.339352, y: 1.26, z: 44.718204}
   m_LocalScale: {x: 0.96635205, y: 0.96635205, z: 0.96635205}
   m_Children:
   - {fileID: 224265734901638632}
@@ -509,9 +509,9 @@ MonoBehaviour:
   scream_Clip: {fileID: 8300000, guid: 642b8872687aaa045bc6e8e894105904, type: 3}
   die_Clip: {fileID: 8300000, guid: d39d88087c1980840af166169182c4d6, type: 3}
   attack_Clips:
-  - {fileID: 8300000, guid: f00e7f852e333a940a3c117078756f1b, type: 3}
-  - {fileID: 8300000, guid: 948d857bb940f4f4197aa456861ab387, type: 3}
-  - {fileID: 8300000, guid: a4c6f17eb50155f44a49c60266426c37, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114023847051316852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -637,8 +637,7 @@ MonoBehaviour:
   patrol_For_This_Time: 4
   wait_Before_Attack: 1
   attack_Point: {fileID: 1733766677433198}
-  WaypointNetwork: {fileID: 114337147700408512, guid: c53622ce8f5e2404ba64801fd456b83f,
-    type: 2}
+  WaypointNetwork: {fileID: 0}
   CurrentIndex: 0
   HasPath: 0
   PathPending: 0
