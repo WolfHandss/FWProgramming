@@ -44,13 +44,14 @@ public class PlayerMovement : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded == true)
             {
-                float test = rb.velocity.z;
-            test = rb.velocity.z + test;
+            rb.AddForce(0, jumpHeight, 0, ForceMode.Impulse);
+                //float test = rb.velocity.z;
+            //test = rb.velocity.z + test;
                 //rb.velocity += (rb.velocity.x, jumpForce , rb.velocity.z);
-                rb.AddForce(0, jumpHeight, test, ForceMode.Impulse);
+               // rb.AddForce(0, jumpHeight, test, ForceMode.Impulse);
                 //rb.AddForce(transform.up * thrust);
                 isGrounded = false;
-            StartCoroutine(JumpEvent());
+            //StartCoroutine(JumpEvent());
             //if (!isGrounded)
             //{
             //    jumpMove();
@@ -76,7 +77,7 @@ public class PlayerMovement : MonoBehaviour {
         Vector3 HorMove = transform.right * hor;
            Vector3 playerMovement = new Vector3(hor, 0f, ver) * speed*Time.deltaTime;
            
-            transform.Translate(playerMovement, Space.Self);
+            rb.AddForce((forwardMove + HorMove) * 10, ForceMode.VelocityChange);
         //}
         //else
         //{
@@ -115,12 +116,13 @@ public class PlayerMovement : MonoBehaviour {
     {
         float hor = Input.GetAxis("Horizontal");
         float ver = Input.GetAxis("Vertical");
-
+        Vector3 forwardMove = transform.forward * ver;
+        Vector3 HorMove = transform.right * hor;
         //ver = Mathf.Clamp(ver, -0.2f, 1);
         //ver = ver * 0.5f;
         //hor = hor * 0.5f;
         Vector3 playerMovement = new Vector3(hor, 0f, ver) * airSpeedcont * Time.deltaTime;
-        transform.Translate(playerMovement, Space.Self);
+        rb.AddForce((forwardMove + HorMove) * 5, ForceMode.VelocityChange);
     }
     private IEnumerator JumpEvent()
     {
