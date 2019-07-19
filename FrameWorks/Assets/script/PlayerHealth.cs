@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 100;               // The amount of health the player starts the game with.
-    [SerializeField] private int currentHealth;                 // The current health the player has.
+    public int currentHealth;                 // The current health the player has.
     public Slider healthSlider;                                 // Reference to the UI's health bar.
 
 
