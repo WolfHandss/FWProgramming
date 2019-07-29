@@ -24,23 +24,23 @@ public class PlayerHealth : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        healthSlider.value = currentHealth;
-        // If the player has just been damaged...
-        if (damaged)
-        {
-            // Reset the damaged flag.
-            damaged = false;
-        }
-        // Otherwise...
-        else
-        {
+    //void Update()
+    //{
+    //    healthSlider.value = currentHealth;
+    //    // If the player has just been damaged...
+    //    if (damaged)
+    //    {
+    //        // Reset the damaged flag.
+    //        damaged = false;
+    //    }
+    //    // Otherwise...
+    //    else
+    //    {
 
-        }
+    //    }
 
 
-    }
+    //}
 
     public void TakeDamage(int amount)
     {
