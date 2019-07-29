@@ -32,7 +32,6 @@ public class PlayerMovement : MonoBehaviour {
         
             if (isGrounded)
             {
-                print("LAND!!!!");
                 //landedSpeed();
                 PlayerMove();
             }
