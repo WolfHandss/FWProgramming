@@ -8,16 +8,21 @@ public class StateChange : MonoBehaviour {
     public Material Idle;
     public Material LowHealth;
     private Material currentMaterial;
+    private Material futureMaterial;
 
     private List<Renderer> Materials = new List<Renderer>();
 
-    public float smoothing = 0;
+    private float smoothing = 0;
+    private float t;
+    private float startTime;
+    public float speed = 1.0f;
 
     PlayerHealth health;
 
     private bool inCombat = false;
+    private bool changeMat = false;
 
-    private float startTime;
+
 	// Use this for initialization
 	void Start () {
         startTime = Time.time;
@@ -34,41 +39,41 @@ public class StateChange : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        setState();
-	}
+        if(changeMat)
+        {
+            t = (Time.time - startTime) * speed;
+            for (int i = 0; i < Materials.Count; i++)
+            {
+                Materials[i].material.Lerp(currentMaterial, futureMaterial, t);
+            }
+        }
+        if(Time.time - startTime == 1)
+        {
+            currentMaterial = futureMaterial;
+            changeMat = false;
+        }
+        
+    }
 
     void InDangerState()
     {
-        float t;
-        while(smoothing < 1.0f)
-        {
-            t = (Mathf.Sin(Time.time - startTime) * 1.0f);
-            for (int i = 0; i < Materials.Count; i++)
-            {
-                Materials[i].material.Lerp(currentMaterial, InDanger, t);
-            }
-            smoothing += 0.1f * Time.deltaTime;
-        }
-        
-        currentMaterial = InDanger;
+        startTime = Time.time;
+        futureMaterial = InDanger;
+        changeMat = true;
     }
 
     void IdleState()
     {
-        for (int i = 0; i < Materials.Count; i++)
-        {
-            Materials[i].material.Lerp(currentMaterial, Idle, smoothing);
-        }
-        currentMaterial = Idle;
+        startTime = Time.time;
+        futureMaterial = Idle;
+        changeMat = true;
     }
 
     void LowHealthState()
     {
-        for (int i = 0; i < Materials.Count; i++)
-        {
-            Materials[i].material.Lerp(currentMaterial, LowHealth, smoothing);
-        }
-        currentMaterial = LowHealth;
+        startTime = Time.time;
+        futureMaterial = LowHealth;
+        changeMat = true;
     }
 
     void setState()
@@ -100,6 +105,7 @@ public class StateChange : MonoBehaviour {
         if (other.gameObject.CompareTag("Enemy"))
         {
             setState();
+            IdleState();
             inCombat = false;
         }
     }
