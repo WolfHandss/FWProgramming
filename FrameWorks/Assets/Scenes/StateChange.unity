@@ -338,7 +338,7 @@ MonoBehaviour:
   InDanger: {fileID: 2100000, guid: 7d2f4430a46185f469a6d4e3d3ba270f, type: 2}
   Idle: {fileID: 2100000, guid: f58e862eff5db9c41850a755acc122bf, type: 2}
   LowHealth: {fileID: 2100000, guid: c92604033136b4441a919a946d96503e, type: 2}
-  smoothing: 5
+  speed: 1
 --- !u!135 &1512810802
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -431,7 +431,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1514069736}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.95, y: 4.76, z: -10.16}
+  m_LocalPosition: {x: -0.33, y: 4.76, z: -12.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
