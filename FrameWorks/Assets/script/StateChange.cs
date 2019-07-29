@@ -8,16 +8,20 @@ public class StateChange : MonoBehaviour {
     public Material Idle;
     public Material LowHealth;
     private Material currentMaterial;
-    public List<Renderer> Materials = new List<Renderer>();
 
-    public float smoothing = 1;
+    private List<Renderer> Materials = new List<Renderer>();
+
+    public float smoothing = 0;
 
     PlayerHealth health;
 
     private bool inCombat = false;
 
+    private float startTime;
 	// Use this for initialization
 	void Start () {
+        startTime = Time.time;
+
         Renderer[] temp = GetComponentsInChildren<Renderer>();
 
         foreach(Renderer oof in temp)
@@ -25,7 +29,6 @@ public class StateChange : MonoBehaviour {
             Materials.Add(oof);
         }
         currentMaterial = Idle;
-        //InDangerState();
         health = GetComponentInParent<PlayerHealth>();
 	}
 	
@@ -36,10 +39,17 @@ public class StateChange : MonoBehaviour {
 
     void InDangerState()
     {
-        for (int i = 0; i < Materials.Count; i++)
+        float t;
+        while(smoothing < 1.0f)
         {
-            Materials[i].material.Lerp(currentMaterial, InDanger, smoothing);            
+            t = (Mathf.Sin(Time.time - startTime) * 1.0f);
+            for (int i = 0; i < Materials.Count; i++)
+            {
+                Materials[i].material.Lerp(currentMaterial, InDanger, t);
+            }
+            smoothing += 0.1f * Time.deltaTime;
         }
+        
         currentMaterial = InDanger;
     }
 
