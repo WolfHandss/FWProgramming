@@ -71,8 +71,8 @@ public class PlayerMovement : MonoBehaviour {
 
         ////if (isGrounded)
         ////{
-            float hor = Input.GetAxis("Horizontal");
-            float ver = Input.GetAxis("Vertical");
+            float hor = Input.GetAxisRaw("Horizontal");
+            float ver = Input.GetAxisRaw("Vertical");
         Vector3 forwardMove = transform.forward * ver;
         Vector3 HorMove = transform.right * hor;
            //Vector3 playerMovement = new Vector3(hor, 0f, ver) * speed*Time.deltaTime;
@@ -83,8 +83,12 @@ public class PlayerMovement : MonoBehaviour {
         {
             rb.AddForce((forwardMove + HorMove) * forceMultiply, ForceMode.VelocityChange);
         }
-        horizontal = Mathf.Min(horizontal.magnitude, ogSpeed) * horizontal.normalized;
-        rb.velocity = horizontal + rb.velocity.y * Vector3.up;
+        else
+        {
+            horizontal = Mathf.Min(horizontal.magnitude, ogSpeed) * horizontal.normalized;
+            rb.velocity = horizontal + rb.velocity.y * Vector3.up;
+        }
+        
 
         if (hor == 0)
         {
@@ -150,24 +154,28 @@ public class PlayerMovement : MonoBehaviour {
 
         Vector3 horizontal = rb.velocity;
         horizontal.y = 0;
-        if (horizontal.magnitude < airSpeedcont)
+        if (horizontal.magnitude <= airSpeedcont)
         {
             rb.AddForce((forwardMove + HorMove) * forceMultiply, ForceMode.VelocityChange);
         }
-        horizontal = Mathf.Min(horizontal.magnitude, airSpeedcont) * horizontal.normalized;
-        rb.velocity = horizontal + rb.velocity.y * Vector3.up;
-
-        if (hor == 0)
+        else
         {
-            Vector3 sidewaysVel = Vector3.Dot(rb.velocity, transform.right) * transform.right;
-            rb.velocity -= sidewaysVel;
+            horizontal = Mathf.Min(horizontal.magnitude, airSpeedcont) * horizontal.normalized;
+            rb.velocity = horizontal + rb.velocity.y * Vector3.up;
         }
+        
 
-        if (ver == 0)
-        {
-            Vector3 forwardVel = Vector3.Dot(rb.velocity, transform.forward) * transform.forward;
-            rb.velocity -= forwardVel;
-        }
+        //if (hor == 0)
+        //{
+        //    Vector3 sidewaysVel = Vector3.Dot(rb.velocity, transform.right) * transform.right;
+        //    rb.velocity -= sidewaysVel;
+        //}
+
+        //if (ver == 0)
+        //{
+        //    Vector3 forwardVel = Vector3.Dot(rb.velocity, transform.forward) * transform.forward;
+        //    rb.velocity -= forwardVel;
+        //}
     }
     //private IEnumerator JumpEvent()
     //{
