@@ -20,7 +20,6 @@ public class StateChange : MonoBehaviour {
     PlayerHealth health;
 
     private bool inCombat = false;
-    private bool changeMat = false;
 
 
 	// Use this for initialization
@@ -33,47 +32,38 @@ public class StateChange : MonoBehaviour {
         {
             Materials.Add(oof);
         }
-        currentMaterial = Idle;
         health = GetComponentInParent<PlayerHealth>();
+
+        futureMaterial = Idle;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if(changeMat)
+
+        if (futureMaterial != Materials[0].material)
         {
-            t = (Time.time - startTime) * speed;
             for (int i = 0; i < Materials.Count; i++)
             {
-                Materials[i].material.Lerp(currentMaterial, futureMaterial, t);
+                Materials[i].material.Lerp(Materials[i].material, futureMaterial, speed * Time.deltaTime);
             }
         }
-        if(Time.time - startTime == 1)
-        {
-            currentMaterial = futureMaterial;
-            changeMat = false;
-        }
-        
+
+        setState();
     }
 
     void InDangerState()
     {
-        startTime = Time.time;
         futureMaterial = InDanger;
-        changeMat = true;
     }
 
     void IdleState()
     {
-        startTime = Time.time;
         futureMaterial = Idle;
-        changeMat = true;
     }
 
     void LowHealthState()
     {
-        startTime = Time.time;
         futureMaterial = LowHealth;
-        changeMat = true;
     }
 
     void setState()
