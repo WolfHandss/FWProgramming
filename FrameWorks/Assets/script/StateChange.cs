@@ -7,24 +7,18 @@ public class StateChange : MonoBehaviour {
     public Material InDanger;
     public Material Idle;
     public Material LowHealth;
-    private Material currentMaterial;
     private Material futureMaterial;
 
     private List<Renderer> Materials = new List<Renderer>();
 
-    private float smoothing = 0;
-    private float t;
-    private float startTime;
     public float speed = 1.0f;
 
     PlayerHealth health;
 
     private bool inCombat = false;
 
-
 	// Use this for initialization
 	void Start () {
-        startTime = Time.time;
 
         Renderer[] temp = GetComponentsInChildren<Renderer>();
 
@@ -70,11 +64,11 @@ public class StateChange : MonoBehaviour {
     {
         if (!inCombat)
         {
-            if (health.currentHealth <= 30)
+            if (health.GetHealth() <= 30)
             {
                 LowHealthState();
             }
-            else if (health.currentHealth > 30)
+            else if (health.GetHealth() > 30)
             {
                 IdleState();
             }
@@ -95,7 +89,6 @@ public class StateChange : MonoBehaviour {
         if (other.gameObject.CompareTag("Enemy"))
         {
             setState();
-            IdleState();
             inCombat = false;
         }
     }
