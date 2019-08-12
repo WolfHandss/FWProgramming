@@ -25,22 +25,28 @@ public class RayCast : MonoBehaviour
     {
         RaycastHit hit;
         //shoot the ray cast from this object, or slightly in front of it...
-        Physics.Raycast(transform.position, transform.forward, out hit, range);
-
-        if(hit.collider)
+        if (Physics.Raycast(transform.position, transform.forward, out hit, range))
         {
-            Debug.Log("Raycast is hitting stuff");
-            Debug.Log(hit.collider.tag);
-        }
+            if (hit.collider)
+            {
+                Debug.Log("Raycast is hitting stuff");
+                Debug.Log(hit.collider.tag);
+            }
 
-        //if the raycast hits an enemy with Enemy Tag
-        if(hit.collider.transform.tag == "Enemy")
-        {
-            hit.transform.GetComponent<enemyHealth>().AdjustHealth(-1);
+            //if the raycast hits an enemy with Enemy Tag
+            if (hit.collider.transform.tag == "Enemy")
+            {
+                hit.transform.GetComponent<enemyHealth>().AdjustHealth(-1);
 
-            //draw the ray on the screen
-            Debug.DrawRay(fpsCam.transform.position, fpsCam.transform.forward, Color.green);
-            Debug.Log("raycast working");
+                //draw the ray on the screen
+                Debug.DrawRay(fpsCam.transform.position, fpsCam.transform.forward, Color.green);
+                Debug.Log("raycast working");
+            }
+            //if the raycast hits an enemy with Crystal Tag
+            if (hit.collider.CompareTag("CrystalRaycast"))
+            {
+                hit.collider.GetComponent<CrystalRaycast>().Shoot();
+            }
         }
     }
 }

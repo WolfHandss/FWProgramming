@@ -7,6 +7,7 @@ TagManager:
   - lightSource
   - Bullet
   - Enemy
+  - CrystalRaycast
   layers:
   - Default
   - TransparentFX
